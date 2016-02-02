@@ -2,7 +2,7 @@ package module1;
 
 public class WordPlay {
 
-    public static boolean isVowel(char ch) {
+    private static boolean isVowel(char ch) {
         String vowels = "aeiouAEIOU";
         return vowels.contains(String.valueOf(ch));
     }
