@@ -1,3 +1,5 @@
+package module2;
+
 import edu.duke.*;
 import java.util.*;
 
@@ -9,6 +11,10 @@ public class GladLib {
 	private ArrayList<String> nameList;
 	private ArrayList<String> animalList;
 	private ArrayList<String> timeList;
+	private ArrayList<String> verbList;
+	private ArrayList<String> fruitList;
+	
+	private ArrayList<String> seenWordList;
 	
 	private Random myRandom;
 	
@@ -17,11 +23,13 @@ public class GladLib {
 	
 	public GladLib(){
 		initializeFromSource(dataSourceDirectory);
+		seenWordList = new ArrayList<>();
 		myRandom = new Random();
 	}
 	
 	public GladLib(String source){
 		initializeFromSource(source);
+		seenWordList = new ArrayList<>();
 		myRandom = new Random();
 	}
 	
@@ -32,7 +40,9 @@ public class GladLib {
 		countryList = readIt(source+"/country.txt");
 		nameList = readIt(source+"/name.txt");		
 		animalList = readIt(source+"/animal.txt");
-		timeList = readIt(source+"/timeframe.txt");		
+		timeList = readIt(source+"/timeframe.txt");	
+		verbList = readIt(source+"/verb.txt");
+		fruitList = readIt(source+"/fruit.txt");
 	}
 	
 	private String randomFrom(ArrayList<String> source){
@@ -62,6 +72,12 @@ public class GladLib {
 		if (label.equals("timeframe")){
 			return randomFrom(timeList);
 		}
+		if (label.equals("verb")) {
+			return randomFrom(verbList);
+		}
+		if (label.equals("fruit")) {
+			return randomFrom(fruitList);
+		}
 		if (label.equals("number")){
 			return ""+myRandom.nextInt(50)+5;
 		}
@@ -76,7 +92,11 @@ public class GladLib {
 		}
 		String prefix = w.substring(0,first);
 		String suffix = w.substring(last+1);
-		String sub = getSubstitute(w.substring(first+1,last));
+		String sub;
+		do {
+			sub = getSubstitute(w.substring(first+1,last));
+		} while (seenWordList.contains(sub));
+		seenWordList.add(sub);
 		return prefix+sub+suffix;
 	}
 	
@@ -128,10 +148,14 @@ public class GladLib {
 	
 	public void makeStory(){
 	    System.out.println("\n");
-		String story = fromTemplate("data/madtemplate.txt");
+	    seenWordList.clear();
+		String story = fromTemplate("datalong/madtemplate2.txt");
 		printOut(story, 60);
+		System.out.println("\n\nTotal words replaced: " + seenWordList.size());
 	}
 	
-
-
+	public static void main(String[] args) {
+		GladLib glad = new GladLib();
+		glad.makeStory();
+	}
 }
