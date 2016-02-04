@@ -53,7 +53,7 @@ public class CharactersInPlay {
 				System.out.println(characters.get(i) + " " + counts.get(i));
 			}
 		}
-		//charactersWithNumParts(2, 3);
+		//charactersWithNumParts(10, 15);
 	}
 	
 	public static void main(String[] args) {
