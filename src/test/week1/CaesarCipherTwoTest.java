@@ -1,4 +1,4 @@
-package module1;
+package week1;
 
 public class CaesarCipherTwoTest {
 

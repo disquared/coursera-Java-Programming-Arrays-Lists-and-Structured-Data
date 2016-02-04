@@ -1,6 +1,6 @@
-package module1;
+package week1;
 
-import module1.CaesarCipher;
+import week1.CaesarCipher;
 
 public class CaesarCipherTest {
 

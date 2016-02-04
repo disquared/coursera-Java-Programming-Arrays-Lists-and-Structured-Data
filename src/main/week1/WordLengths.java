@@ -1,4 +1,4 @@
-package module1;
+package week1;
 
 import edu.duke.FileResource;
 

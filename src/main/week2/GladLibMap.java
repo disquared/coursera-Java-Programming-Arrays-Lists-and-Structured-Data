@@ -1,4 +1,4 @@
-package module2;
+package week2;
 
 import edu.duke.*;
 import java.util.*;
