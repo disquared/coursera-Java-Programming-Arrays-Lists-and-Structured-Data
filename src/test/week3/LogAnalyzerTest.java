@@ -25,8 +25,37 @@ public class LogAnalyzerTest
     	analyzer.printAll();
     }
     
+    public void testUniqueIP() {
+    	LogAnalyzer analyzer = new LogAnalyzer();
+    	analyzer.readFile("data/weblogparser/short-test_log");
+    	System.out.println("The file has " + analyzer.countUniqueIPs() + " unique IPs");
+    }
+    
+    public void testUniqueIPsInRange(int low, int high) {
+    	LogAnalyzer analyzer = new LogAnalyzer();
+    	analyzer.readFile("data/weblogparser/short-test_log");
+    	System.out.println("The file has " + analyzer.countUniqueIPsInRange(low, high) + " unique IPs in range " + low + " to " + high);
+    }
+    
+    public void testPrintAllHigherThanNum(int num) {
+    	LogAnalyzer analyzer = new LogAnalyzer();
+    	analyzer.readFile("data/weblogparser/short-test_log");
+    	analyzer.printAllHigherThanNum(num);
+    }
+    
+    public void testUniqueIPVisitsOnDay(String someday) {
+    	LogAnalyzer analyzer = new LogAnalyzer();
+    	analyzer.readFile("data/weblogparser/weblog-short_log");
+    	List<String> uniqueIPs = analyzer.uniqueIPVisitsOnDay(someday);
+    	System.out.println("Unique IP visits on " + someday + ": " + uniqueIPs.size());
+    }
+    
     public static void main(String[] args) {
     	LogAnalyzerTest test = new LogAnalyzerTest();
     	test.testLogAnalyzer();
+    	test.testUniqueIP();
+    	test.testPrintAllHigherThanNum(300);
+    	test.testUniqueIPVisitsOnDay("Sep 14");
+    	test.testUniqueIPsInRange(300, 399);
     }
 }
